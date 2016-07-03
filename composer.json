@@ -1,0 +1,29 @@
+{
+  "name": "twistersfury/phalcon-core",
+  "description": "Phalcon Core Helper",
+  "minimum-stability": "stable",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Twister's Fury",
+      "email": "info@twistersfury.com"
+    }
+  ],
+  "autoload" : {
+    "psr-4" : {
+      "TwistersFury\\Phalcon\\Core\\" : "src"
+    },
+    "files" : [
+      "src/Bootstrap.php"
+    ]
+  },
+  "require" : {
+    "php": "^7.0"
+  },
+  "require-dev": {
+    "phalcon/devtools": "^2.0"
+  },
+  "config" : {
+    "prepend-autoloader" : false
+  }
+}
