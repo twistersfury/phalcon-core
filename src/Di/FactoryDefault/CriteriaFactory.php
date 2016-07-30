@@ -7,7 +7,7 @@
      * @copyright 2016 Twister's Fury
      */
 
-    namespace TwistersFury\Phalcon\Core\Db;
+    namespace TwistersFury\Phalcon\Core\Di\FactoryDefault;
 
     use Phalcon\Mvc\Model\Criteria;
     use TwistersFury\Phalcon\Core\Di\FactoryDefault;
@@ -32,6 +32,6 @@
          */
         public function getCriteria(string $modelName) : Criteria {
             return $this->getDI()->get('\Phalcon\Mvc\Model\Criteria')
-                ->setName($modelName);
+                ->setModelName($modelName);
         }
     }

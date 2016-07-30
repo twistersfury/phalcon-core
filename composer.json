@@ -10,7 +10,7 @@
     }
   ],
   "autoload" : {
-    "psr-4" : {
+    "psr-0" : {
       "TwistersFury\\Phalcon\\Core\\" : "src"
     },
     "files" : [
@@ -22,7 +22,8 @@
     "phpunit/phpunit": "^5.4"
   },
   "require-dev": {
-    "phalcon/devtools": "^2.0"
+    "phalcon/devtools": "^2.0",
+    "phalcon/incubator": "^2.0"
   },
   "config" : {
     "prepend-autoloader" : false

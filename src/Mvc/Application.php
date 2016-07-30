@@ -20,35 +20,38 @@
      *
      * @package TwistersFury\Phalcon\Core\Mvc
      */
-    class Application extends pApplication {
-
+    abstract class Application extends pApplication {
         /**
          * @return \TwistersFury\Phalcon\Core\Mvc\Application
          */
-        protected function _registerModules() : Application {
-            $this->registerModules(
-                [
-                    'frontend' => $this->getDI()->get('\TwistersFury\Phalcon\Core\Frontend\Module')
-                ]
-            );
-        }
+        abstract function _registerModules() : Application;
 
         /**
          * Run Method
          * 
          * @return string
          */
-        public function run() : string {
+        public function run() : Application {
             try {
                 $this->_registerModules();
 
-                return $this->handle()->getContent();
+                echo $this->handle()->getContent();
             } catch (Exception $thrownException) {
                 $this->_handleException($thrownException);
+
+                /** @var \Phalcon\Http\Response $errorResponse */
+                $errorResponse = $this->getDI()->get('\Phalcon\Http\Response');
+
+                $errorResponse->setStatusCode(500, 'An Error Occurred');
+                if ($this->getDI()->has('simpleView')) {
+                    $errorView     = $this->getDI()->get('simpleView');
+                    $errorResponse->setContent($errorView->render('exceptions\general'));
+                }
+            } finally {
+                
             }
 
-            $errorView = $this->getDI()->get('kmrSimpleView');
-            return $errorView->render('exceptions\general');
+            return $this;
         }
 
         /**

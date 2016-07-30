@@ -9,6 +9,7 @@
 
     namespace TwistersFury\Phalcon\Core\Di\FactoryDefault;
 
+    use Phalcon\Di\Exception;
     use TwistersFury\Phalcon\Core\Di\FactoryDefault;
     use TwistersFury\Phalcon\Core\Interfaces\PathManager;
 
@@ -60,7 +61,7 @@
         public function configureDatabase(string $databaseName, Config $dbConfig) : System {
             $this->setShared($databaseName, function() use ($dbConfig) {
                 $dbAdapter    = $dbConfig->get('adapter') ?? '\Phalcon\Db\Adapter\Pdo\Mysql';
-                $dbConnection =    $this->get($dbAdapter, $dbConfig->toArray());
+                $dbConnection = $this->get($dbAdapter, [$dbConfig->toArray()]);
                 $dbConnection->setEventsManager($this->get('eventsManager'));
 
                 return $dbConnection;
@@ -144,5 +145,21 @@
             );
 
             return $this;
+        }
+
+        public function get($name, $parameters = NULL) {
+            try {
+                return parent::get($name, $parameters);
+            } catch (Exception $error) {
+                return \Phalcon\Di::getDefault()->get($name, $parameters);
+            }
+        }
+
+        public function getShared($name, $parameters = NULL) {
+            try {
+                return parent::getShared($name, $parameters);
+            } catch (Exception $error) {
+                return \Phalcon\Di::getDefault()->getShared($name, $parameters);
+            }
         }
     }

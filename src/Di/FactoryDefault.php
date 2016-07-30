@@ -23,20 +23,35 @@
          * FactoryDefault constructor.
          */
         public function __construct() {
-            $classMethods = get_class_methods(__CLASS__);
+            $this->registerServices()
+                ->loadAdditionalServices();
+        }
 
-            //Call All Method That Begin With '_register'
-            array_walk($classMethods, function($methodName) {
-                if (substr($methodName, 0, 9) === '_register') {
-                    $this->{$methodName};
+        protected function _runMethods($methodPrefix) : FactoryDefault {
+            $classMethods = get_class_methods(get_class($this));
+            array_walk($classMethods, function($methodName) use ($methodPrefix) {
+                if (substr($methodName, 0, strlen($methodPrefix)) === $methodPrefix) {
+                    $this->{$methodName}();
                 }
             });
 
-            //Call All Methods That Begin With '_load'
-            array_walk($classMethods, function($methodName) {
-                if (substr($methodName, 0, 5) === '_load') {
-                    $this->{$methodName};
-                }
-            });
+            return $this;
+        }
+
+        /**
+         * Run Methods That Start With _register
+         * @return \TwistersFury\Phalcon\Core\Di\FactoryDefault
+         */
+        public function registerServices() : FactoryDefault {
+            return $this->_runMethods('_register');
+        }
+
+        /**
+         * Run Methods That Start With _load
+         *
+         * @return \TwistersFury\Phalcon\Core\Di\FactoryDefault
+         */
+        public function loadAdditionalServices() : FactoryDefault {
+            return $this->_runMethods('_load');
         }
     }

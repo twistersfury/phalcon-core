@@ -21,4 +21,4 @@
 
     define('TFPC_DEBUG_MODE', $debugMode);
 
-    define('TFPC_PATH_APPLICATION', isset($_SERVER['DOCUMENT_ROOT']) ? realpath($_SERVER['DOCUMENT_ROOT'] . '/../app') : '');
+    define('TFPC_PATH_APPLICATION', isset($_SERVER['DOCUMENT_ROOT']) ? realpath($_SERVER['DOCUMENT_ROOT'] . '/../app') : './..');

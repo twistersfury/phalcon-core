@@ -29,7 +29,7 @@
          *
          * @return mixed
          */
-        public function __call($methodName, $methodArguments) : mixed {
+        public function __call($methodName, $methodArguments) {
             $tempName = $this->_prepareKey($methodName);
 
             $typeEnd     = strpos($tempName, '_');
@@ -40,7 +40,8 @@
                 case 'get':
                     return $this->readAttribute($propertyName);
                 case 'set':
-                    return $this->writeAttribute($propertyName, $methodArguments[0]);
+                    $this->writeAttribute($propertyName, $methodArguments[0]);
+                    return $this;
                 case 'is':
                     return $this->readAttribute($propertyName) == TRUE;
                 case 'can':

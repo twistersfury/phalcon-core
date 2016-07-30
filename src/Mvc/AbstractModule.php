@@ -17,24 +17,23 @@
      *
      * @package TwistersFury\Phalcon\Core\Mvc
      */
-    class AbstractModule implements ModuleDefinitionInterface {
+    abstract class AbstractModule implements ModuleDefinitionInterface {
 
         /**
          * @param DiInterface|NULL $dependencyInjector
          */
-        public function registerAutoloaders(DiInterface $dependencyInjector = NULL) : void {}
+        public function registerAutoloaders(DiInterface $dependencyInjector = NULL) {}
 
         /**
          * @param DiInterface $dependencyInjector
          */
-        public function registerServices(DiInterface $dependencyInjector) : void {
-            $sClass = get_called_class();
-            $sClass = explode('\\', $sClass);
+        public function registerServices(DiInterface $dependencyInjector) {
+            $classData = explode('\\', get_called_class());
 
-            array_pop($sClass);
+            array_pop($classData);
 
-            $sClass = implode('\\', $sClass);
+            $classData = implode('\\', $classData);
 
-            $dependencyInjector->getShared('dispatcher')->setDefaultNamespace($sClass . '\\Controllers\\');
+            $dependencyInjector->getShared('dispatcher')->setDefaultNamespace($classData . '\\Controllers\\');
         }
     }

@@ -11,6 +11,8 @@
 
     use Phalcon\Di;
     use Phalcon\DiInterface;
+    use Phalcon\Session;
+    use TwistersFury\Phalcon\Core\Di\FactoryDefault;
 
     /**
      * Trait Injectable
@@ -20,11 +22,33 @@
      * @package TwistersFury\Phalcon\Core\Traits
      */
     trait Injectable {
+        protected $_dependencyInjector = NULL;
 
         /**
          * @return \Phalcon\DiInterface
          */
         public function getDI() : DiInterface {
-            return Di::getDefault();
+            if ($this->_dependencyInjector === NULL) {
+                $this->setDI(Di::getDefault());
+            }
+
+            return $this->_dependencyInjector;
+        }
+
+        /**
+         * @param DiInterface $diInterface
+         * @return $this;
+         */
+        public function setDI(DiInterface $diInterface) {
+            $this->_dependencyInjector = $diInterface;
+
+            return $this;
+        }
+
+        /**
+         * @return \Phalcon\Session
+         */
+        public function getSession() : Session {
+            return $this->getDI()->get('session');
         }
     }
