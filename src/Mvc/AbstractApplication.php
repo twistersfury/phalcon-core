@@ -24,7 +24,7 @@
         /**
          * @return \TwistersFury\Phalcon\Core\Mvc\AbstractApplication
          */
-        abstract function _registerModules() : AbstractApplication;
+        abstract protected function _registerModules() : AbstractApplication;
 
         /**
          * Run Method
