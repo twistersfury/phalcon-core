@@ -11,6 +11,7 @@
 
     interface PathManager {
         public function getApplicationDir() : string;
-        public function getConfigDir() : string;
-        public function getThemesDir() : string;
+        public function getConfigDir()  : string;
+        public function getThemesDir()  : string;
+        public function getModulesDir() : string;
     }
