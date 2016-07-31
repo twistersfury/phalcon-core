@@ -47,8 +47,6 @@
                     $errorView     = $this->getDI()->get('simpleView');
                     $errorResponse->setContent($errorView->render('exceptions\general'));
                 }
-            } finally {
-                
             }
 
             return $this;
