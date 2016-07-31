@@ -20,18 +20,18 @@
      *
      * @package TwistersFury\Phalcon\Core\Mvc
      */
-    abstract class Application extends pApplication {
+    abstract class AbstractApplication extends pApplication {
         /**
-         * @return \TwistersFury\Phalcon\Core\Mvc\Application
+         * @return \TwistersFury\Phalcon\Core\Mvc\AbstractApplication
          */
-        abstract function _registerModules() : Application;
+        abstract function _registerModules() : AbstractApplication;
 
         /**
          * Run Method
          * 
          * @return string
          */
-        public function run() : Application {
+        public function run() : AbstractApplication {
             try {
                 $this->_registerModules();
 
@@ -58,9 +58,9 @@
          * Gracefully Handles Any Thrown Exceptions
          *
          * @param \Exception $thrownException
-         * @return Application
+         * @return AbstractApplication
          */
-        protected function _handleException(Exception $thrownException) : Application {
+        protected function _handleException(Exception $thrownException) : AbstractApplication {
             $this->getDI()->get('kmrExceptionHandler')->handleException($thrownException);
 
             return $this;
