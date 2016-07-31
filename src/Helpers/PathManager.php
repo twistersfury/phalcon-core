@@ -23,4 +23,8 @@
         public function getThemesDir() : string {
             return $this->getApplicationDir() . '/themes';
         }
+
+        public function getModulesDir() : string {
+            return $this->getApplicationDir() . '/modules';
+        }
     }

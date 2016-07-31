@@ -14,7 +14,8 @@
         public function testPaths() {
             $pathManager = new PathManager();
 
-            $this->assertEquals(TFPC_PATH_APPLICATION . '/etc'   , $pathManager->getConfigDir());
-            $this->assertEquals(TFPC_PATH_APPLICATION . '/themes', $pathManager->getThemesDir());
+            $this->assertEquals(TFPC_PATH_APPLICATION . '/etc'    , $pathManager->getConfigDir());
+            $this->assertEquals(TFPC_PATH_APPLICATION . '/themes' , $pathManager->getThemesDir());
+            $this->assertEquals(TFPC_PATH_APPLICATION . '/modules', $pathManager->getModulesDir());
         }
     }
