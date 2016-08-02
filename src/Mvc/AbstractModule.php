@@ -35,11 +35,5 @@
             $classData = implode('\\', $classData);
 
             $dependencyInjector->getShared('dispatcher')->setDefaultNamespace($classData . '\\Controllers\\');
-
-            /** @var \Phalcon\Mvc\RouterInterface $routerInstance */
-            $routerInstance = $dependencyInjector->getShared('router');
-            foreach($dependencyInjector->getModuleHelper()->getModule($routerInstance->getModuleName())->getGroups() as $moduleGroup) {
-                $routerInstance->mount($moduleGroup);
-            }
         }
     }
