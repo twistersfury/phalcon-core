@@ -10,6 +10,7 @@
 
     use TwistersFury\Phalcon\Core\Interfaces\Cacheable as iCacheable;
     use \TwistersFury\Phalcon\Core\Interfaces\ModuleHelper  as iModuleHelper;
+    use TwistersFury\Phalcon\Core\Mvc\Module\Data;
     use TwistersFury\Phalcon\Core\Traits\Cacheable as tCacheable;
 
     /**
@@ -40,9 +41,16 @@
                     continue;
                 }
 
-                $modulesArray[] = $this->getDI()->get('\TwistersFury\Phalcon\Core\Mvc\Module\Data', $directoryInfo->getPath());
+                /** @var Data $moduleData */
+                $moduleData = $this->getDI()->get('\TwistersFury\Phalcon\Core\Mvc\Module\Data', $directoryInfo->getPath());
+
+                $modulesArray[$moduleData->getName()] = $moduleData;
             }
 
             return $modulesArray;
+        }
+
+        public function getModule($moduleName) : Data {
+            return $this->getModules()[$moduleName] ?? NULL;
         }
     }
