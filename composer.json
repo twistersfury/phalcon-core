@@ -19,7 +19,8 @@
   },
   "require" : {
     "php": "^7.0",
-    "phpunit/phpunit": "^5.4"
+    "phpunit/phpunit": "^5.4",
+    "mikey179/vfsStream": "1.6.x-dev"
   },
   "require-dev": {
     "phalcon/devtools": "^2.0",
