@@ -12,6 +12,7 @@
     use Phalcon\Di\Exception;
     use TwistersFury\Phalcon\Core\Di\FactoryDefault;
     use TwistersFury\Phalcon\Core\Interfaces\PathManager;
+    use TwistersFury\Phalcon\Core\Interfaces\ModuleHelper;
 
     use Phalcon\Config;
 
@@ -20,6 +21,7 @@
      *
      * @package TwistersFury\Phalcon\Core\Di\FactoryDefault
      * @method PathManager getPathManager
+     * @method ModuleHelper getModuleHelper
      */
 
     class System extends FactoryDefault {
