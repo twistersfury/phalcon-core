@@ -136,6 +136,29 @@
         }
 
         /**
+         * Register Module Helper
+         *
+         * @return \TwistersFury\Phalcon\Core\Di\FactoryDefault\System
+         */
+        protected function _registerModuleHelper() : System {
+            $this->set(
+                'moduleHelper',
+                '\TwistersFury\Phalcon\Core\Helpers\ModuleHelper'
+            );
+
+            return $this;
+        }
+
+        protected function _registerRouter() : System {
+            $this->set(
+                'router',
+                '\TwistersFury\Phalcon\Core\Mvc\Router'
+            );
+
+            return $this;
+        }
+
+        /**
          * Registers Path Manager
          *
          * @return System
