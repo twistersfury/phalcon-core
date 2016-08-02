@@ -12,6 +12,8 @@
     use \Exception;
 
     use \Phalcon\Mvc\Application as pApplication;
+    use Phalcon\Text;
+    use TwistersFury\Phalcon\Core\Mvc\Module\Data;
 
     /**
      * Class Application
@@ -20,18 +22,33 @@
      *
      * @package TwistersFury\Phalcon\Core\Mvc
      */
-    abstract class AbstractApplication extends pApplication {
+     class Application extends pApplication {
         /**
-         * @return \TwistersFury\Phalcon\Core\Mvc\AbstractApplication
+         * @return \TwistersFury\Phalcon\Core\Mvc\Application
          */
-        abstract protected function _registerModules() : AbstractApplication;
+        protected function _registerModules() : Application {
+            $moduleDefinitions = [];
+
+            /** @var Data $moduleDefinition */
+            foreach($this->getDI()->getModuleHelper()->getModules() as $moduleDefinition) {
+                $moduleDefinitions[Text::uncamelize($moduleDefinition->getName())] = [
+                    'className' => $moduleDefinition->getModule(),
+                    'path'      => $moduleDefinition->getPath()
+                ];
+            }
+
+            return $this->registerModules(
+                $moduleDefinitions,
+                TRUE
+            );
+        }
 
         /**
          * Run Method
          * 
-         * @return string
+         * @return Application
          */
-        public function run() : AbstractApplication {
+        public function run() : Application {
             try {
                 $this->_registerModules();
 
@@ -56,9 +73,9 @@
          * Gracefully Handles Any Thrown Exceptions
          *
          * @param \Exception $thrownException
-         * @return AbstractApplication
+         * @return Application
          */
-        protected function _handleException(Exception $thrownException) : AbstractApplication {
+        protected function _handleException(Exception $thrownException) : Application {
             $this->getDI()->get('kmrExceptionHandler')->handleException($thrownException);
 
             return $this;

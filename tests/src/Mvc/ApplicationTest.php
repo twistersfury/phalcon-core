@@ -37,6 +37,66 @@
         }
 
         public function testWithException() {
+            $this->markTestIncomplete('To Be Implemented');
+        }
+
+        public function testRegisterModules() {
+            $mockModule = $this->getMockBuilder('\TwistersFury\Phalcon\Core\Mvc\Module\Data')
+                ->setConstructorArgs(['\Some\Module'])
+                ->setMethods(['getName', 'getPath', 'getModule'])
+                ->getMock();
+
+            $mockModule->expects($this->once())
+                ->method('getName')
+                ->willReturn('some_module');
+
+            $mockModule->expects($this->once())
+                ->method('getPath')
+                ->willReturn('Some\Path');
+
+            $mockModule->expects($this->once())
+                ->method('getModule')
+                ->willReturn('Some\Module');
             
+            $arrayData = [
+                $mockModule
+            ];
+
+            $arrayIterator = new \ArrayIterator($arrayData);
+
+            $mockHelper = $this->getMockBuilder('\TwistersFury\Phalcon\Core\Helpers\ModuleHelper')
+                ->setMethods(['getModules'])
+                ->getMock();
+
+            $mockHelper->expects($this->once())
+                ->method('getModules')
+                ->willReturn($arrayIterator);
+
+            $this->di->set('moduleHelper', $mockHelper);
+
+            /** @var \TwistersFury\Phalcon\Core\Mvc\Application|\PHPUnit_Framework_MockObject_MockObject $testApplication */
+            $testApplication = $this->getMockBuilder('\TwistersFury\Phalcon\Core\Mvc\Application')
+                                    ->setConstructorArgs([$this->di])
+                                    ->setMethods(['registerModules'])
+                                    ->getMock();
+
+            $testApplication->expects($this->once())
+                ->method('registerModules')
+                ->with(
+                    [
+                        'some_module' => [
+                            'className' => 'Some\Module',
+                            'path'      => 'Some\Path'
+                        ]
+                    ],
+                    TRUE
+                )
+                ->willReturnSelf();
+
+
+            $rfApplication = new \ReflectionMethod('\TwistersFury\Phalcon\Core\Mvc\Application', '_registerModules');
+            $rfApplication->setAccessible(TRUE);
+
+            $this->assertEquals($testApplication, $rfApplication->invoke($testApplication));
         }
     }
