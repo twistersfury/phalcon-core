@@ -32,7 +32,7 @@
          * Used To Register Class Overrides
          * @return $this
          */
-        public function registerModels() {
+        public function registerModels() : FactoryDefault {
             return $this;
         }
 
