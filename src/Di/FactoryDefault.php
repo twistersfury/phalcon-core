@@ -23,8 +23,17 @@
          * FactoryDefault constructor.
          */
         public function __construct() {
-            $this->registerServices()
+            $this->registerModels()
+                ->registerServices()
                 ->loadAdditionalServices();
+        }
+
+        /**
+         * Used To Register Class Overrides
+         * @return $this
+         */
+        public function registerModels() {
+            return $this;
         }
 
         protected function _runMethods($methodPrefix) : FactoryDefault {
