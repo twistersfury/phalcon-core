@@ -17,6 +17,6 @@
     //Let Phalcon Handle Auto-Loading
     (new Loader())->registerNamespaces(
         [
-            'TwistersFury\Phalcon\Core' => __DIR__
+            'TwistersFury\Phalcon\Core\\' => __DIR__
         ]
     )->register();
