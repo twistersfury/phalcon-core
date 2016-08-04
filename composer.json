@@ -10,9 +10,6 @@
     }
   ],
   "autoload" : {
-    "psr-4" : {
-      "TwistersFury\\Phalcon\\Core\\" : "src"
-    },
     "files" : [
       "src/Bootstrap.php"
     ]
