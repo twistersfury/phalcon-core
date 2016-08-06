@@ -115,6 +115,7 @@
                     $simpleView = $this->get('\Phalcon\Mvc\View\Simple');
 
                     $simpleView->setViewsDir($this->getPathManager()->getThemesDir() . '/default');
+                    $simpleView->registerEngines(['volt' => '\TwistersFury\Phalcon\Core\Mvc\View\Engine\Volt']);
 
                     return $simpleView;
                 }
