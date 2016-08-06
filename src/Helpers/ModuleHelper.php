@@ -55,7 +55,9 @@
         }
 
         public function getModule($moduleName) : Data {
-            if (!$this->hasModule($moduleName)) {
+            if ($moduleName === NULL) {
+                throw new \InvalidArgumentException("Module Name Cannot Be Null");
+            } if (!$this->hasModule($moduleName)) {
                 throw new \Exception("Module Not Found: " . $moduleName);
             }
 
