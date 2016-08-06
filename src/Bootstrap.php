@@ -19,4 +19,4 @@
         [
             'TwistersFury\Phalcon\Core' => __DIR__
         ]
-    )->register();
+    )->setPrepend(TRUE)->register();

@@ -8,8 +8,7 @@
      */
 
     namespace TwistersFury\Phalcon\Core\Di\FactoryDefault;
-
-    use Phalcon\Di\Exception;
+    
     use TwistersFury\Phalcon\Core\Di\FactoryDefault;
     use TwistersFury\Phalcon\Core\Interfaces\PathManager;
     use TwistersFury\Phalcon\Core\Interfaces\ModuleHelper;
@@ -170,45 +169,5 @@
             );
 
             return $this;
-        }
-
-        /**
-         * Override In Case This Isn't The Default DI
-         *
-         * @param string $name
-         * @param null   $parameters
-         *
-         * @return mixed
-         */
-        public function get($name, $parameters = NULL) {
-            try {
-                return parent::get($name, $parameters);
-            } catch (Exception $error) {
-                if ($this != \Phalcon\Di::getDefault()) {
-                    return \Phalcon\Di::getDefault()->get($name, $parameters);
-                }
-
-                throw $error;
-            }
-        }
-
-        /**
-         * Override In Case This Isn't The Default DI
-         *
-         * @param string $name
-         * @param null   $parameters
-         *
-         * @return mixed
-         */
-        public function getShared($name, $parameters = NULL) {
-            try {
-                return parent::getShared($name, $parameters);
-            } catch (Exception $error) {
-                if ($this != \Phalcon\Di::getDefault()) {
-                    return \Phalcon\Di::getDefault()->getShared($name, $parameters);
-                }
-
-                throw $error;
-            }
         }
     }

@@ -63,4 +63,44 @@
         public function loadAdditionalServices() : FactoryDefault {
             return $this->_runMethods('_load');
         }
+
+        /**
+         * Override In Case This Isn't The Default DI
+         *
+         * @param string $name
+         * @param null   $parameters
+         *
+         * @return mixed
+         */
+        public function get($name, $parameters = NULL) {
+            try {
+                return parent::get($name, $parameters);
+            } catch (\Exception $error) {
+                if (\Phalcon\Di::getDefault() !== NULL && $this != \Phalcon\Di::getDefault()) {
+                    return \Phalcon\Di::getDefault()->get($name, $parameters);
+                }
+
+                throw $error;
+            }
+        }
+
+        /**
+         * Override In Case This Isn't The Default DI
+         *
+         * @param string $name
+         * @param null   $parameters
+         *
+         * @return mixed
+         */
+        public function getShared($name, $parameters = NULL) {
+            try {
+                return parent::getShared($name, $parameters);
+            } catch (\Exception $error) {
+                if (\Phalcon\Di::getDefault() !== NULL && $this != \Phalcon\Di::getDefault()) {
+                    return \Phalcon\Di::getDefault()->getShared($name, $parameters);
+                }
+
+                throw $error;
+            }
+        }
     }
