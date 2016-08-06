@@ -96,7 +96,9 @@
         protected function _registerExceptionHandler() : System {
             $this->set(
                 'exceptionHandler',
-                '\TwistersFury\Phalcon\Core\Exceptions\Handler'
+                function() {
+                    return $this->get('\TwistersFury\Phalcon\Core\Exceptions\Handler');
+                }
             );
 
             return $this;
