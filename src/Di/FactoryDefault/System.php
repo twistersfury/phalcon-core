@@ -114,9 +114,7 @@
                 function() {
                     $simpleView = $this->get('\Phalcon\Mvc\View\Simple');
 
-                    $simpleView->setViewsDir($this->getPathManager()->getThemesDir() . '/default')
-                               ->setLayoutsDir('layouts')
-                               ->setPartialsDir('partials');
+                    $simpleView->setViewsDir($this->getPathManager()->getThemesDir() . '/default');
 
                     return $simpleView;
                 }
