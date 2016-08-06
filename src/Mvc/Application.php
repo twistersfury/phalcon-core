@@ -76,7 +76,7 @@
          * @return Application
          */
         protected function _handleException(Exception $thrownException) : Application {
-            $this->getDI()->get('kmrExceptionHandler')->handleException($thrownException);
+            $this->getDI()->get('exceptionHandler')->handleException($thrownException);
 
             return $this;
         }

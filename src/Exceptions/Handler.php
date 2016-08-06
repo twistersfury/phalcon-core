@@ -18,8 +18,7 @@
      *
      * @package TwistersFury\Phalcon\Core\Exceptions
      */
-    class Handler {
-
+    abstract class Handler {
         /**
          * Processes Passed Exception
          *
@@ -27,9 +26,5 @@
          *
          * @return Handler
          */
-        public function handleException(Exception $thrownException) : Handler {
-            //TODO: Implement Handler
-
-            return $this;
-        }
+        abstract public function handleException(Exception $thrownException) : Handler;
     }
