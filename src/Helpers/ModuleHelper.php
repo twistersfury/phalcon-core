@@ -50,7 +50,15 @@
             return $modulesArray;
         }
 
+        public function hasModule($moduleName) {
+            return isset($this->getModules()[$moduleName]);
+        }
+
         public function getModule($moduleName) : Data {
-            return $this->getModules()[$moduleName] ?? NULL;
+            if (!$this->hasModule($moduleName)) {
+                throw new \Exception("Module Not Found: " . $moduleName);
+            }
+
+            return $this->getModules()[$moduleName];
         }
     }
