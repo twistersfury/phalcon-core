@@ -9,6 +9,7 @@
 
     namespace TwistersFury\Phalcon\Core\Di;
 
+    use Phalcon\Di\Exception;
     use Phalcon\Di\FactoryDefault as pFactoryDefault;
 
     /**
@@ -71,11 +72,12 @@
          * @param null   $parameters
          *
          * @return mixed
+         * @throws Exception
          */
         public function get($name, $parameters = NULL) {
             try {
                 return parent::get($name, $parameters);
-            } catch (\Exception $error) {
+            } catch (Exception $error) {
                 if (\Phalcon\Di::getDefault() !== NULL && $this != \Phalcon\Di::getDefault()) {
                     return \Phalcon\Di::getDefault()->get($name, $parameters);
                 }
@@ -91,11 +93,12 @@
          * @param null   $parameters
          *
          * @return mixed
+         * @throws Exception
          */
         public function getShared($name, $parameters = NULL) {
             try {
                 return parent::getShared($name, $parameters);
-            } catch (\Exception $error) {
+            } catch (Exception $error) {
                 if (\Phalcon\Di::getDefault() !== NULL && $this != \Phalcon\Di::getDefault()) {
                     return \Phalcon\Di::getDefault()->getShared($name, $parameters);
                 }
