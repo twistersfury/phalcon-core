@@ -44,7 +44,7 @@
             $this->setShared(
                 'config',
                 function() {
-                    return $this->get('\TwistersFury\Phalcon\Core\Config', $this->getPathManager()->getConfigDir() . '/config.php');
+                    return $this->get('\Phalcon\Config', $this->getPathManager()->getConfigDir() . '/config.php');
                 }
             );
 
