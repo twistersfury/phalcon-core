@@ -64,6 +64,8 @@
                     $errorView     = $this->getDI()->get('simpleView');
                     $errorResponse->setContent($errorView->render('/exceptions/general'));
                 }
+
+                $errorResponse->send();
             }
 
             return $this;
