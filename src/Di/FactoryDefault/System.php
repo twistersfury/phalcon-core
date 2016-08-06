@@ -8,7 +8,7 @@
      */
 
     namespace TwistersFury\Phalcon\Core\Di\FactoryDefault;
-    
+
     use TwistersFury\Phalcon\Core\Di\FactoryDefault;
     use TwistersFury\Phalcon\Core\Interfaces\PathManager;
     use TwistersFury\Phalcon\Core\Interfaces\ModuleHelper;
@@ -165,7 +165,7 @@
         protected function _registerPathManager() : System {
             $this->set(
                 'pathManager',
-                '\TwistersFury\Phalcon\Core\PathManager'
+                '\TwistersFury\Phalcon\Core\Helpers\PathManager'
             );
 
             return $this;
