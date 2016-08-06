@@ -14,7 +14,7 @@
     class Router extends pRouter {
         use Injectable;
         
-        public function __construct($defaultRoutes) {
+        public function __construct($defaultRoutes = TRUE) {
             parent::__construct($defaultRoutes);
 
             $this->registerGroups();
