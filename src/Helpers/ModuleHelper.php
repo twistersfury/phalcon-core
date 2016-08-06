@@ -42,7 +42,7 @@
                 }
 
                 /** @var Data $moduleData */
-                $moduleData = $this->getDI()->get('\TwistersFury\Phalcon\Core\Mvc\Module\Data', $directoryInfo->getPath());
+                $moduleData = $this->getDI()->get('\TwistersFury\Phalcon\Core\Mvc\Module\Data', [$directoryInfo->getPath()]);
 
                 $modulesArray[$moduleData->getName()] = $moduleData;
             }
