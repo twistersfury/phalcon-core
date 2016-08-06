@@ -62,7 +62,7 @@
                 $errorResponse->setStatusCode(500, 'An Error Occurred');
                 if ($this->getDI()->has('simpleView')) {
                     $errorView     = $this->getDI()->get('simpleView');
-                    $errorResponse->setContent($errorView->render('exceptions\general'));
+                    $errorResponse->setContent($errorView->render('/exceptions/general'));
                 }
             }
 
