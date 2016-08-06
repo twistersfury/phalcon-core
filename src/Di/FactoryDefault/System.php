@@ -94,7 +94,7 @@
          * @return System
          */
         protected function _registerExceptionHandler() : System {
-            $this->setShared(
+            $this->set(
                 'exceptionHandler',
                 '\TwistersFury\Phalcon\Core\Exceptions\Handler'
             );
