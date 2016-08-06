@@ -30,6 +30,10 @@
          * @return System
          */
         protected function _loadDatabases() : System {
+            if ($this->get('config')->get('databases') === NULL) {
+                return $this;
+            }
+
             foreach($this->get('config')->get('databases') as $dbName => $dbConfig) {
                 $this->configureDatabase($dbName, $dbConfig);
             }
@@ -44,7 +48,7 @@
             $this->setShared(
                 'config',
                 function() {
-                    return $this->get('\Phalcon\Config', $this->getPathManager()->getConfigDir() . '/config.php');
+                    return $this->get('\Phalcon\Config', [include $this->getPathManager()->getConfigDir() . '/config.php']);
                 }
             );
 
