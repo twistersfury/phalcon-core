@@ -24,6 +24,8 @@
          * FactoryDefault constructor.
          */
         public function __construct() {
+            parent::__construct();
+
             $this->registerModels()
                 ->registerServices()
                 ->loadAdditionalServices();
