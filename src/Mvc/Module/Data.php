@@ -43,6 +43,10 @@
         public function getGroups() : array {
             $routeGroups = [];
 
+            if (!file_exists($this->getRoutesPath())) {
+                return $routeGroups;
+            }
+
             /** @var \DirectoryIterator $directoryData */
             foreach(new \DirectoryIterator($this->getRoutesPath()) as $directoryData) {
                 if ($directoryData->isDot() || $directoryData->isDir()) {
