@@ -163,6 +163,8 @@
                     return $this->get('\Phalcon\Mvc\Dispatcher', func_get_args());
                 }
             );
+
+            return $this;
         }
 
         /**
