@@ -105,6 +105,35 @@
         }
 
         /**
+         * Registers Normal View
+         * @return System
+         */
+        protected function _registerView() : System {
+            $this->set(
+                'view',
+                function() {
+                    /** @var \Phalcon\Mvc\View $mainView */
+                    $mainView = $this->get('\Phalcon\Mvc\View');
+
+                    $mainView->setBasePath($this->getPathManager()->getThemesDir())
+                        ->setViewsDir('/default')
+                        ->setLayoutsDir('/layouts')
+                        ->setPartialsDir('/partials')
+                        ->registerEngines(
+                            [
+                                '.volt' => '\TwistersFury\Phalcon\Core\Mvc\View\Engine\Volt'
+                            ]
+                        );
+
+
+                    return $mainView;
+                }
+            );
+
+            return $this;
+        }
+
+        /**
          * Registers SimpleView
          * @return System
          */
@@ -114,8 +143,8 @@
                 function() {
                     $simpleView = $this->get('\Phalcon\Mvc\View\Simple');
 
-                    $simpleView->setViewsDir($this->getPathManager()->getThemesDir() . '/default');
-                    $simpleView->registerEngines(['.volt' => '\TwistersFury\Phalcon\Core\Mvc\View\Engine\Volt']);
+                    $simpleView->setViewsDir($this->getPathManager()->getThemesDir() . '/default')
+                        ->registerEngines(['.volt' => '\TwistersFury\Phalcon\Core\Mvc\View\Engine\Volt']);
 
                     return $simpleView;
                 }
