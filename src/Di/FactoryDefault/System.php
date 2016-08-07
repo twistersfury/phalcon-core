@@ -206,4 +206,28 @@
                 TRUE
             );
         }
+
+        /**
+         * Register Response Object
+         *
+         * @return System
+         */
+        protected function _registerResponse() : System {
+            return $this->_addSimpleClass(
+                'response',
+                '\Phalcon\Mvc\Response'
+            );
+        }
+
+        /**
+         * Register Request Object
+         * @return $this
+         */
+        protected function _registerRequest() {
+            return $this->_addSimpleClass(
+                'request',
+                '\Phalcon\Mvc\Request',
+                TRUE
+            );
+        }
     }
