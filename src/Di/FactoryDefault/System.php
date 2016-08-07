@@ -81,12 +81,11 @@
          * @return System
          */
         protected function _registerApplication() : System {
-            $this->setShared(
+            return $this->_addSimpleClass(
                 'application',
-                '\TwistersFury\Phalcon\Core\Mvc\Application'
+                '\TwistersFury\Phalcon\Core\Mvc\Application',
+                TRUE
             );
-
-            return $this;
         }
 
         /**
@@ -94,14 +93,10 @@
          * @return System
          */
         protected function _registerExceptionHandler() : System {
-            $this->set(
+            return $this->_addSimpleClass(
                 'exceptionHandler',
-                function() {
-                    return $this->get('\TwistersFury\Phalcon\Core\Exceptions\Handler');
-                }
+                '\TwistersFury\Phalcon\Core\Exceptions\Handler'
             );
-
-            return $this;
         }
 
         /**
@@ -157,14 +152,12 @@
          * Registers Dispatcher
          */
         protected function _registerDispatcher() : System {
-            $this->setShared(
+            $this->_addSimpleClass(
                 'dispatcher',
-                function() {
-                    return $this->get('\Phalcon\Mvc\Dispatcher', func_get_args());
-                }
+                '\Phalcon\Mvc\Dispatcher',
+                TRUE
             );
 
-            return $this;
         }
 
         /**
@@ -173,12 +166,11 @@
          * @return System
          */
         protected function _registerCriteriaFactory() : System {
-            $this->set(
+            return $this->_addSimpleClass(
                 'criteriaFactory',
-                '\TwistersFury\Phalcon\Core\Di\CriteriaFactory'
+                '\TwistersFury\Phalcon\Core\Di\CriteriaFactory',
+                TRUE
             );
-
-            return $this;
         }
 
         /**
@@ -187,21 +179,19 @@
          * @return \TwistersFury\Phalcon\Core\Di\FactoryDefault\System
          */
         protected function _registerModuleHelper() : System {
-            $this->set(
+            return $this->_addSimpleClass(
                 'moduleHelper',
-                '\TwistersFury\Phalcon\Core\Helpers\ModuleHelper'
+                '\TwistersFury\Phalcon\Core\Helpers\ModuleHelper',
+                TRUE
             );
-
-            return $this;
         }
 
         protected function _registerRouter() : System {
-            $this->set(
+            return $this->_addSimpleClass(
                 'router',
-                '\TwistersFury\Phalcon\Core\Mvc\Router'
+                '\TwistersFury\Phalcon\Core\Mvc\Router',
+                TRUE
             );
-
-            return $this;
         }
 
         /**
@@ -210,11 +200,10 @@
          * @return System
          */
         protected function _registerPathManager() : System {
-            $this->set(
+            $this->_addSimpleClass(
                 'pathManager',
-                '\TwistersFury\Phalcon\Core\Helpers\PathManager'
+                '\TwistersFury\Phalcon\Core\Helpers\PathManager',
+                TRUE
             );
-
-            return $this;
         }
     }

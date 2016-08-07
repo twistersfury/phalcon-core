@@ -30,6 +30,23 @@
         }
 
         /**
+         * Helper For Quick Class Additions
+         *
+         * @param      $serviceName
+         * @param      $className
+         * @param bool $isShared
+         *
+         * @return $this
+         */
+        protected function _addSimpleClass($serviceName, $className, $isShared = FALSE) {
+            $this->{ $isShared ? 'setShared' : 'set'}($serviceName, function() use ($className) {
+                return $this->get($className, func_get_args());
+            });
+
+            return $this;
+        }
+
+        /**
          * Used To Register Class Overrides
          * @return $this
          */
