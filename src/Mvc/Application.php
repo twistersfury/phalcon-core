@@ -32,8 +32,8 @@
             /** @var Data $moduleDefinition */
             foreach($this->getDI()->getModuleHelper()->getModules() as $moduleDefinition) {
                 $moduleDefinitions[Text::uncamelize($moduleDefinition->getName())] = [
-                    'className' => $moduleDefinition->getModule(),
-                    'path'      => $moduleDefinition->getPath()
+                    'className' => $moduleDefinition->getModulePath(),
+                    'path'      => $moduleDefinition->getModule()
                 ];
             }
 

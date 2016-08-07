@@ -63,7 +63,11 @@
             return $this->getPath() . '/Routes';
         }
 
-        public function getModule() : string {
+        public function getModulePath() : string {
             return $this->getPath() . '/Module.php';
+        }
+
+        public function getModule() : string {
+            return $this->getDI()->getConfig()->moduleNamespace . '\\' . $this->getName() . '\Module';
         }
     }
