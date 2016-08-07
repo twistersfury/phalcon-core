@@ -214,7 +214,7 @@
         protected function _registerResponse() : System {
             return $this->_addSimpleClass(
                 'response',
-                '\Phalcon\Mvc\Response'
+                '\Phalcon\Http\Response'
             );
         }
 
@@ -225,7 +225,7 @@
         protected function _registerRequest() : System {
             return $this->_addSimpleClass(
                 'request',
-                '\Phalcon\Mvc\Request',
+                '\Phalcon\Http\Request',
                 TRUE
             );
         }
