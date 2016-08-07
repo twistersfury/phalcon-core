@@ -152,12 +152,11 @@
          * Registers Dispatcher
          */
         protected function _registerDispatcher() : System {
-            $this->_addSimpleClass(
+            return $this->_addSimpleClass(
                 'dispatcher',
                 '\Phalcon\Mvc\Dispatcher',
                 TRUE
             );
-
         }
 
         /**
