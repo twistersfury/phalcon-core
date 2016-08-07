@@ -108,7 +108,7 @@
                 'view',
                 function() {
                     /** @var \Phalcon\Mvc\View $mainView */
-                    $mainView = $this->get('\Phalcon\Mvc\View');
+                    $mainView = $this->get('\TwistersFury\Phalcon\Core\Mvc\View');
 
                     $mainView->setBasePath($this->getPathManager()->getThemesDir())
                         ->setViewsDir('/default')
