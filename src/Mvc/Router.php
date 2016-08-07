@@ -22,8 +22,10 @@
 
         public function registerGroups() {
             /** @var \Phalcon\Mvc\RouterInterface $routerInstance */
-            foreach($this->getDI()->get('moduleHelper')->getModule($this->getModuleName())->getGroups() as $moduleGroup) {
-                $this->mount($moduleGroup);
+            foreach($this->getDI()->get('moduleHelper')->getModules() as $moduleData) {
+                foreach($moduleData->getGroups() as $moduleGroup) {
+                    $this->mount($moduleGroup);
+                }
             }
 
             return $this;
