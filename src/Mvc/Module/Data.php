@@ -68,6 +68,6 @@
         }
 
         public function getModule() : string {
-            return $this->getDI()->getConfig()->moduleNamespace . '\\' . $this->getName() . '\Module';
+            return $this->getDI()->getConfig()->moduleNamespace . '\\' . Text::camelize($this->getName()) . '\Module';
         }
     }
