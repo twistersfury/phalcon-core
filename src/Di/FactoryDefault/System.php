@@ -199,7 +199,7 @@
          * @return System
          */
         protected function _registerPathManager() : System {
-            $this->_addSimpleClass(
+            return $this->_addSimpleClass(
                 'pathManager',
                 '\TwistersFury\Phalcon\Core\Helpers\PathManager',
                 TRUE
@@ -222,7 +222,7 @@
          * Register Request Object
          * @return $this
          */
-        protected function _registerRequest() {
+        protected function _registerRequest() : System {
             return $this->_addSimpleClass(
                 'request',
                 '\Phalcon\Mvc\Request',
