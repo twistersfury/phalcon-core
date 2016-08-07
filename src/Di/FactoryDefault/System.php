@@ -149,17 +149,6 @@
         }
 
         /**
-         * Registers Dispatcher
-         */
-        protected function _registerDispatcher() : System {
-            return $this->_addSimpleClass(
-                'dispatcher',
-                '\Phalcon\Mvc\Dispatcher',
-                TRUE
-            );
-        }
-
-        /**
          * Registers CriteriaFactory
          *
          * @return System
@@ -202,30 +191,6 @@
             return $this->_addSimpleClass(
                 'pathManager',
                 '\TwistersFury\Phalcon\Core\Helpers\PathManager',
-                TRUE
-            );
-        }
-
-        /**
-         * Register Response Object
-         *
-         * @return System
-         */
-        protected function _registerResponse() : System {
-            return $this->_addSimpleClass(
-                'response',
-                '\Phalcon\Http\Response'
-            );
-        }
-
-        /**
-         * Register Request Object
-         * @return $this
-         */
-        protected function _registerRequest() : System {
-            return $this->_addSimpleClass(
-                'request',
-                '\Phalcon\Http\Request',
                 TRUE
             );
         }
