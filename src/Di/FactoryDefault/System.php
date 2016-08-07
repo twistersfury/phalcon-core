@@ -154,6 +154,18 @@
         }
 
         /**
+         * Registers Dispatcher
+         */
+        protected function _registerDispatcher() : System {
+            $this->setShared(
+                'dispatcher',
+                function() {
+                    return $this->get('\Phalcon\Mvc\Dispatcher', func_get_args());
+                }
+            );
+        }
+
+        /**
          * Registers CriteriaFactory
          *
          * @return System
