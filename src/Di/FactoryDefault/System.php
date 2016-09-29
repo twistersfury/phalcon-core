@@ -156,7 +156,7 @@
         protected function _registerCriteriaFactory() : System {
             return $this->_addSimpleClass(
                 'criteriaFactory',
-                '\TwistersFury\Phalcon\Core\Di\CriteriaFactory',
+                '\TwistersFury\Phalcon\Core\Di\FactoryDefault\CriteriaFactory',
                 TRUE
             );
         }
