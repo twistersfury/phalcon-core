@@ -11,6 +11,7 @@
 
     use Phalcon\Di\Exception;
     use Phalcon\Di\FactoryDefault as pFactoryDefault;
+    use TwistersFury\Phalcon\Core\Traits\RunMethods;
 
     /**
      * Class FactoryDefault
@@ -20,6 +21,8 @@
      * @package \TwistersFury\Phalcon\Core\Di
      */
     abstract class FactoryDefault extends pFactoryDefault {
+        use RunMethods;
+
         /**
          * FactoryDefault constructor.
          */
@@ -56,23 +59,12 @@
             return $this;
         }
 
-        protected function _runMethods($methodPrefix) : FactoryDefault {
-            $classMethods = get_class_methods(get_class($this));
-            array_walk($classMethods, function($methodName) use ($methodPrefix) {
-                if (substr($methodName, 0, strlen($methodPrefix)) === $methodPrefix) {
-                    $this->{$methodName}();
-                }
-            });
-
-            return $this;
-        }
-
         /**
          * Run Methods That Start With _register
          * @return \TwistersFury\Phalcon\Core\Di\FactoryDefault
          */
         public function registerServices() : FactoryDefault {
-            return $this->_runMethods('_register');
+            return $this->runMethods('_register');
         }
 
         /**
@@ -81,7 +73,7 @@
          * @return \TwistersFury\Phalcon\Core\Di\FactoryDefault
          */
         public function loadAdditionalServices() : FactoryDefault {
-            return $this->_runMethods('_load');
+            return $this->runMethods('_load');
         }
 
         /**
