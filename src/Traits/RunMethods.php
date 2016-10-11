@@ -21,9 +21,9 @@
          *
          * @param $methodPrefix
          *
-         * @return \TwistersFury\Phalcon\Core\Traits\RunMethods
+         * @return $this
          */
-        protected function runMethods($methodPrefix = NULL) : RunMethods {
+        protected function runMethods($methodPrefix = NULL) {
             if ($methodPrefix === NULL) {
                 $methodPrefix = $this->getMethodPrefix();
             }
